@@ -1,0 +1,1 @@
+{"memory":32000,"width":21332,"bits":12,"threshold":1984,"period":4,"window":8192,"payload":32000,"allocated_payload":32000,"baseline_payload":42664,"optimized_object_bytes":104,"baseline_object_bytes":72,"packets":27121713,"queries":10848684,"young":1501404,"age256":3037,"coarse":9326334,"oracle_checks":238898666,"direct_truth_checks":2648}

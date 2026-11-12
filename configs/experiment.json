@@ -1,0 +1,33 @@
+{
+  "dataset": "data/CAIDA-130000.dat",
+  "dataset_bytes": 569555973,
+  "dataset_sha256": "d778751759e17250a866c85db9918a43ed495956996927059b4cf3812c0850f3",
+  "memory_bytes": [
+    32000,
+    64000,
+    96000,
+    128000
+  ],
+  "window": 8192,
+  "optimized_maintenance": "avx2_packed12",
+  "baseline_maintenance": "avx2_u16",
+  "hashes": 4,
+  "optimized_bits": 12,
+  "threshold": 1984,
+  "slow_period": 4,
+  "seeds": [
+    131,
+    132,
+    133,
+    134
+  ],
+  "query_every": 10,
+  "development_packets": 65536,
+  "snapshot_seed": 135,
+  "hash_seeds": [100, 101, 102, 103],
+  "young_max_age": 256,
+  "throughput": {
+    "full": {"repeats": 5, "warmups": 1, "snapshots": 128, "keys_per_snapshot": 8192, "min_batches": 16, "target_seconds": 0.03},
+    "smoke": {"repeats": 2, "warmups": 1, "snapshots": 4, "keys_per_snapshot": 256, "min_batches": 1, "target_seconds": 0.003}
+  }
+}

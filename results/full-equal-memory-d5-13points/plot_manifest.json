@@ -1,0 +1,19 @@
+{
+  "matplotlib": "3.11.1",
+  "plotter_sha256": "b088cef082347694d96ff541e72d6ea2fb798e1f43127a5c38c7484102cd6ab1",
+  "summary_sha256": {
+    "summary.csv": "8af00cd16ae11408d0003485c0a1d8cd36b1c828db47d688ff771b9878b38775",
+    "memory.csv": "79d323fbe4f3ab02dcb749840168f946fbc2aa6ec1f6b7ad6d1314b9d81e697e"
+  },
+  "figures": [
+    "accuracy_all.png",
+    "accuracy_all.svg",
+    "overall_aae.png",
+    "overall_aae.svg",
+    "overall_accuracy.png",
+    "overall_accuracy.svg",
+    "overall_are.png",
+    "overall_are.svg",
+    "README.md"
+  ]
+}

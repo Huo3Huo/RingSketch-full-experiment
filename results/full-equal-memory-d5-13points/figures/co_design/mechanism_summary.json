@@ -1,0 +1,293 @@
+{
+  "source": "C:\\Users\\RubyFan\\Desktop\\RingSketch-full-experiment\\results\\full-equal-memory-d5-13points\\summary.csv",
+  "source_sha256": "8af00cd16ae11408d0003485c0a1d8cd36b1c828db47d688ff771b9878b38775",
+  "population": "all evaluated queries, pooled over four query seeds",
+  "points": [
+    {
+      "memory_kb": 32,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.21295334070012548,
+      "all_overwritten": 0.009004502297237158,
+      "at_least_two": 0.9321284498654399,
+      "are_no_survivor": 0.0023820452118834814,
+      "are_with_survivor": 0.0,
+      "are": 0.0023820452118834814
+    },
+    {
+      "memory_kb": 32,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.2024036463777542,
+      "all_overwritten": 0.002874357848380504,
+      "at_least_two": 0.9741701389772253,
+      "are_no_survivor": 0.0006449392573704493,
+      "are_with_survivor": 0.00018385934483717325,
+      "are": 0.0008287986022075259
+    },
+    {
+      "memory_kb": 40,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.1761444752192985,
+      "all_overwritten": 0.004571798754577053,
+      "at_least_two": 0.9579007002139615,
+      "are_no_survivor": 0.001173008278170765,
+      "are_with_survivor": 0.0,
+      "are": 0.001173008278170765
+    },
+    {
+      "memory_kb": 40,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.16718110694347812,
+      "all_overwritten": 0.0011876094833253507,
+      "at_least_two": 0.9864887759658222,
+      "are_no_survivor": 0.0002488272677604543,
+      "are_with_survivor": 0.00016387572878738004,
+      "are": 0.00041270299654772995
+    },
+    {
+      "memory_kb": 48,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.15163274642343716,
+      "all_overwritten": 0.002435226244952844,
+      "at_least_two": 0.9718203608843248,
+      "are_no_survivor": 0.0006085678963634431,
+      "are_with_survivor": 0.0,
+      "are": 0.0006085678963634431
+    },
+    {
+      "memory_kb": 48,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.14342622570627,
+      "all_overwritten": 0.0005252249950316554,
+      "at_least_two": 0.9922115899034389,
+      "are_no_survivor": 0.0001147832117290622,
+      "are_with_survivor": 0.0001518429997582357,
+      "are": 0.00026662621148722476
+    },
+    {
+      "memory_kb": 56,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.13165848042029799,
+      "all_overwritten": 0.0014253341695637921,
+      "at_least_two": 0.9807752719131647,
+      "are_no_survivor": 0.00035797749974304457,
+      "are_with_survivor": 0.0,
+      "are": 0.00035797749974304457
+    },
+    {
+      "memory_kb": 56,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.1235684254422011,
+      "all_overwritten": 0.00026722135145608445,
+      "at_least_two": 0.9954097658296619,
+      "are_no_survivor": 5.565733299687416e-05,
+      "are_with_survivor": 0.000141367951738293,
+      "are": 0.00019702528473513275
+    },
+    {
+      "memory_kb": 64,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.11714752683366941,
+      "all_overwritten": 0.0009431558703341345,
+      "at_least_two": 0.9858560724969038,
+      "are_no_survivor": 0.0002335645715482251,
+      "are_with_survivor": 0.0,
+      "are": 0.0002335645715482251
+    },
+    {
+      "memory_kb": 64,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.10910335299654779,
+      "all_overwritten": 0.0001449945449604763,
+      "at_least_two": 0.9970332807186567,
+      "are_no_survivor": 3.0322346940683382e-05,
+      "are_with_survivor": 0.00013166988849062512,
+      "are": 0.00016199223543128204
+    },
+    {
+      "memory_kb": 72,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.10452698686771594,
+      "all_overwritten": 0.0005754615029804537,
+      "at_least_two": 0.989844021634329,
+      "are_no_survivor": 0.00013944066222902932,
+      "are_with_survivor": 0.0,
+      "are": 0.00013944066222902932
+    },
+    {
+      "memory_kb": 72,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.09973338701726403,
+      "all_overwritten": 8.747604778607249e-05,
+      "at_least_two": 0.9980371812839235,
+      "are_no_survivor": 1.8934199628798855e-05,
+      "are_with_survivor": 0.00012353324823756201,
+      "are": 0.00014246744786633968
+    },
+    {
+      "memory_kb": 80,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.09527201640309553,
+      "all_overwritten": 0.00042779382273462846,
+      "at_least_two": 0.991838364911357,
+      "are_no_survivor": 0.0001007619504222776,
+      "are_with_survivor": 0.0,
+      "are": 0.0001007619504222776
+    },
+    {
+      "memory_kb": 80,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.09015039980886161,
+      "all_overwritten": 6.424742392717864e-05,
+      "at_least_two": 0.9985695039140231,
+      "are_no_survivor": 1.216635852073651e-05,
+      "are_with_survivor": 0.00011489530500875571,
+      "are": 0.00012706166352947484
+    },
+    {
+      "memory_kb": 88,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.08663384886129967,
+      "all_overwritten": 0.00029137174610302963,
+      "at_least_two": 0.9938969556123121,
+      "are_no_survivor": 6.978923119815543e-05,
+      "are_with_survivor": 0.0,
+      "are": 6.978923119815543e-05
+    },
+    {
+      "memory_kb": 88,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.08259934569022381,
+      "all_overwritten": 3.4197696236704836e-05,
+      "at_least_two": 0.9990124147776818,
+      "are_no_survivor": 6.481568753557645e-06,
+      "are_with_survivor": 0.00011277881953952274,
+      "are": 0.00011926038829306626
+    },
+    {
+      "memory_kb": 96,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.07975137813950521,
+      "all_overwritten": 0.00022675561386063047,
+      "at_least_two": 0.9950865008142923,
+      "are_no_survivor": 5.5151430428402685e-05,
+      "are_with_survivor": 0.0,
+      "are": 5.5151430428402685e-05
+    },
+    {
+      "memory_kb": 96,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.0761665838916499,
+      "all_overwritten": 2.2306853070842508e-05,
+      "at_least_two": 0.999271524546203,
+      "are_no_survivor": 4.805728701084081e-06,
+      "are_with_survivor": 0.00010748442845906796,
+      "are": 0.00011229015716013923
+    },
+    {
+      "memory_kb": 104,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.07342844533032762,
+      "all_overwritten": 0.00017412250186289876,
+      "at_least_two": 0.996142942314478,
+      "are_no_survivor": 3.8710809989243396e-05,
+      "are_with_survivor": 0.0,
+      "are": 3.8710809989243396e-05
+    },
+    {
+      "memory_kb": 104,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.0699214208838602,
+      "all_overwritten": 2.1292905203986033e-05,
+      "at_least_two": 0.9994586440161775,
+      "are_no_survivor": 2.85094749244518e-06,
+      "are_with_survivor": 0.00010463776225395208,
+      "are": 0.00010748870974638528
+    },
+    {
+      "memory_kb": 112,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.06980388128182183,
+      "all_overwritten": 0.0001261904208842289,
+      "at_least_two": 0.9967203395361133,
+      "are_no_survivor": 3.33687803018816e-05,
+      "are_with_survivor": 0.0,
+      "are": 3.3368780301881604e-05
+    },
+    {
+      "memory_kb": 112,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.0652518222486709,
+      "all_overwritten": 1.1153426535421254e-05,
+      "at_least_two": 0.999585110968298,
+      "are_no_survivor": 2.359502952913353e-06,
+      "are_with_survivor": 9.614078202720361e-05,
+      "are": 9.85002849801068e-05
+    },
+    {
+      "memory_kb": 120,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.06512441969920038,
+      "all_overwritten": 0.0001197380253678695,
+      "at_least_two": 0.9971799344510357,
+      "are_no_survivor": 3.134700578018084e-05,
+      "are_with_survivor": 0.0,
+      "are": 3.134700578018084e-05
+    },
+    {
+      "memory_kb": 120,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.061878860145617665,
+      "all_overwritten": 1.0508186983785314e-05,
+      "at_least_two": 0.9996764584533939,
+      "are_no_survivor": 1.9846202021019466e-06,
+      "are_with_survivor": 9.491331375791485e-05,
+      "are": 9.689793396000707e-05
+    },
+    {
+      "memory_kb": 128,
+      "method": "baseline",
+      "queries": 10848684,
+      "overwritten_fraction": 0.06178060398846533,
+      "all_overwritten": 7.208247562561506e-05,
+      "at_least_two": 0.9977633231827934,
+      "are_no_survivor": 1.623895929736942e-05,
+      "are_with_survivor": 0.0,
+      "are": 1.623895929736942e-05
+    },
+    {
+      "memory_kb": 128,
+      "method": "optimized",
+      "queries": 10848684,
+      "overwritten_fraction": 0.0569015375505453,
+      "all_overwritten": 3.318374836984836e-06,
+      "at_least_two": 0.9997144354098617,
+      "are_no_survivor": 7.137691248134774e-07,
+      "are_with_survivor": 8.970778710946528e-05,
+      "are": 9.042155623427097e-05
+    }
+  ]
+}

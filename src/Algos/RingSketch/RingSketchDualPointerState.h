@@ -18,6 +18,19 @@ public:
     struct Config {
         int width, bits, threshold, window;
         int fastSpeed, slowSpeed; // positions per packet, same phase origin at position 0
+        int hashes = 4;
+        int allocationBytes = 0; // Optional budget padding, never addressable as counters.
+    };
+    struct Positions {
+        std::array<int, 5> values{};
+        int count = 4;
+        int& operator[](size_t i) { return values[i]; }
+        int operator[](size_t i) const { return values[i]; }
+        const int* begin() const { return values.data(); }
+        const int* end() const { return values.data() + count; }
+        bool operator==(const Positions& other) const {
+            return count == other.count && std::equal(begin(), end(), other.begin());
+        }
     };
     struct WriteInterval {
         int64_t lo = 0, hi = -1;
@@ -33,29 +46,37 @@ public:
     };
 
     static Config forBudget(int bytes, int bits, int threshold, int slowPeriod,
-                            int window = 8192) {
+                            int window = 8192, int hashes = 4) {
         if (bytes < 8 || bits < 2 || bits > 16 || window <= 0 || slowPeriod <= 1)
             throw std::invalid_argument("invalid dual-pointer budget/configuration");
         // Original repro budgets counter payload; metadata is reported separately.
+        if (hashes != 4 && hashes != 5) throw std::invalid_argument("supported hash counts are 4 and 5");
+        int quantum = hashes;
+        while (quantum % 4 || quantum % slowPeriod) quantum += hashes;
         const int64_t availableBits = int64_t(bytes / 8) * 64;
-        const int64_t w = (availableBits / bits) / 4 * 4;
+        const int64_t w = (availableBits / bits) / quantum * quantum;
         if (w < 4 || w > std::numeric_limits<int>::max())
             throw std::invalid_argument("invalid width");
         const int64_t vf = 65535LL * w / window;
         const int64_t vs = w / slowPeriod;
         if (vf > std::numeric_limits<int>::max() || vs <= 0)
             throw std::invalid_argument("invalid clock speed");
-        return {int(w), bits, threshold, window, int(vf), int(vs)};
+        return {int(w), bits, threshold, window, int(vf), int(vs), hashes, bytes / 8 * 8};
     }
 
     explicit RingSketchDualPointer(const Config& c) : cfg_(c), maximum_(0), now_(0) {
-        if (c.width < 4 || c.width % 4 || c.bits < 2 || c.bits > 16 || c.window <= 0
+        if ((c.hashes != 4 && c.hashes != 5) || c.width < c.hashes || c.width % c.hashes
+                || c.width % 4 || c.bits < 2 || c.bits > 16 || c.window <= 0
                 || c.fastSpeed <= 0 || c.slowSpeed <= 0 || c.slowSpeed >= c.fastSpeed)
             throw std::invalid_argument("invalid dual-pointer configuration");
         maximum_ = (1 << c.bits) - 1;
         if (c.threshold <= 0 || c.threshold >= maximum_)
             throw std::invalid_argument("both clock stages must be nonempty");
-        words_.assign((uint64_t(c.width) * c.bits + 63) / 64, 0);
+        const size_t needed = (uint64_t(c.width) * c.bits + 63) / 64;
+        if (c.allocationBytes < 0 || c.allocationBytes % 8
+                || (c.allocationBytes && size_t(c.allocationBytes) < needed * 8))
+            throw std::invalid_argument("counter allocation too small or unaligned");
+        words_.assign(c.allocationBytes ? size_t(c.allocationBytes) / 8 : needed, 0);
         name = "RingDual";
     }
     RingSketchDualPointer(const RingSketchDualPointer&) = delete;
@@ -69,10 +90,10 @@ public:
     size_t payloadBytes() const { return words_.size() * sizeof(uint64_t); }
     size_t allocatedPayloadBytes() const { return words_.capacity() * sizeof(uint64_t); }
 
-    std::array<int, 4> getPos(TUPLES key) const {
-        std::array<int, 4> p;
-        const int interval = cfg_.width / 4;
-        for (int i = 0; i < 4; ++i)
+    Positions getPos(TUPLES key) const {
+        Positions p; p.count = cfg_.hashes;
+        const int interval = cfg_.width / cfg_.hashes;
+        for (int i = 0; i < cfg_.hashes; ++i)
             p[i] = hash(key, 100 + i) % interval + i * interval;
         return p;
     }
@@ -178,9 +199,9 @@ public:
         const auto p = getPos(key);
         QueryResult out;
         bool allFine = true;
-        std::array<WriteInterval, 4> intervals;
+        std::array<WriteInterval, 5> intervals;
         int64_t earliest = now_, latest = now_;
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < cfg_.hashes; ++i) {
             const int c = read(p[i]);
             if (!c) {
                 out.estimate = cfg_.window;
@@ -194,7 +215,7 @@ public:
             earliest = std::min(earliest, intervals[i].lo);
             latest = std::min(latest, intervals[i].hi);
         }
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < cfg_.hashes; ++i)
             if (intervals[i].lo > latest) out.overwrittenMask |= 1U << i;
         out.ageLower = int(now_ - latest);
         out.ageUpper = int(std::min<int64_t>(cfg_.window, now_ - earliest));
@@ -321,7 +342,7 @@ private:
             words_[word+1] = (words_[word+1] & ~highMask) | (uint64_t(value) >> (64-offset));
         }
     }
-    int originalFineEstimate(const std::array<int,4>& p) const {
+    int originalFineEstimate(const Positions& p) const {
         // Same Min clamp, distance ordering, missing-neighbor fallback and rounding
         // as repro. The constant offset 65535-K cancels from the trajectory formula.
         int minimum = maximum_ - 1;

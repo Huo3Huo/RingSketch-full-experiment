@@ -4,14 +4,22 @@
   "dataset_sha256": "d778751759e17250a866c85db9918a43ed495956996927059b4cf3812c0850f3",
   "memory_bytes": [
     32000,
+    40000,
+    48000,
+    56000,
     64000,
+    72000,
+    80000,
+    88000,
     96000,
+    104000,
+    112000,
+    120000,
     128000
   ],
   "window": 8192,
   "optimized_maintenance": "avx2_packed12",
   "baseline_maintenance": "avx2_u16",
-  "hashes": 4,
   "optimized_bits": 12,
   "threshold": 1984,
   "slow_period": 4,
@@ -24,10 +32,41 @@
   "query_every": 10,
   "development_packets": 65536,
   "snapshot_seed": 135,
-  "hash_seeds": [100, 101, 102, 103],
+  "hash_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
   "young_max_age": 256,
   "throughput": {
-    "full": {"repeats": 5, "warmups": 1, "snapshots": 128, "keys_per_snapshot": 8192, "min_batches": 16, "target_seconds": 0.03},
-    "smoke": {"repeats": 2, "warmups": 1, "snapshots": 4, "keys_per_snapshot": 256, "min_batches": 1, "target_seconds": 0.003}
-  }
+    "full": {
+      "repeats": 5,
+      "warmups": 1,
+      "snapshots": 128,
+      "keys_per_snapshot": 8192,
+      "min_batches": 16,
+      "target_seconds": 0.03
+    },
+    "smoke": {
+      "repeats": 2,
+      "warmups": 1,
+      "snapshots": 4,
+      "keys_per_snapshot": 256,
+      "min_batches": 1,
+      "target_seconds": 0.003
+    }
+  },
+  "baseline_hashes": 4,
+  "optimized_hashes": 5,
+  "baseline_bits": 16,
+  "comparison": "equal_memory",
+  "sample_packets": 1048576,
+  "baseline_hash_seeds": [
+    100,
+    101,
+    102,
+    103
+  ]
 }

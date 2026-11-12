@@ -1,6 +1,52 @@
 #include "oracle_support.h"
 #include "Algos/RingSketch/RingSketchDualPointer.h"
 #include "Protocol.h"
+void fivePartitionTests() {
+    // Independent event simulation at compact layouts, including collisions in part 5.
+    for (int width : {20, 40, 60}) {
+        const Dual::Config cfg{width,12,1984,8192,65535*width/8192,width/4,5};
+        Dual s(cfg); Events events(cfg);
+        const auto target=key(77);
+        const auto positions0=positions(target,width,5);
+        TUPLES collider{}; bool found=false;
+        for(int id=100;id<100000&&!found;++id) {
+            auto candidate=key(id); const auto pos=positions(candidate,width,5);
+            bool match=pos[4]==positions0[4];
+            for(int j=0;j<4;++j) match=match&&pos[j]!=positions0[j];
+            if(match) {collider=candidate;found=true;}
+        }
+        require(found,"fifth-part-only collider missing");
+        s.insert(target,0);events.insert(target);
+        s.updateClock(300);events.advance(300);compare(s,events);
+        s.insert(collider,300);events.insert(collider);compare(s,events);
+        require(s.counter(positions0[4])==4095,"fifth part not updated");
+        const auto q=RingSketchTrajectory::query(s,target);
+        require((q.overwrittenMask&16)!=0,"fifth-part overwrite not detected");
+        require(q.ageLower<=300&&q.ageUpper>=300,"fifth-part collision excluded truth");
+        for(int t=300;t<8500;++t) {
+            if(t%37==0){auto x=key(1000+t%29);s.insert(x,t);events.insert(x);}
+            s.updateClock();events.advance(1);compare(s,events);
+        }
+    }
+    for(int memory:Protocol::Memories) {
+        const auto cfg=Dual::forBudget(memory,12,1984,4,8192,5);
+        Dual s(cfg); RingSketchSimd reference(8192,2*cfg.width,5,16);
+        require(cfg.width%20==0&&s.payloadBytes()==size_t(memory),"five-part budget mismatch");
+        require(uint64_t(cfg.width+20)*12>uint64_t(memory)*8,"budget left a usable full group");
+        std::mt19937 random(137);
+        for(int t=0;t<1024;++t) {
+            auto x=key(random()%128);s.insert(x,t);reference.insert(x,t);
+            s.updateClock();reference.updateClock();
+            const auto expected=reference.getPos(x);const auto actual=s.getPos(x);
+            require(std::equal(actual.begin(),actual.end(),expected.begin()),"five-part mapping mismatch");
+            for(int id=0;id<128;++id) {
+                const auto q=RingSketchTrajectory::query(s,key(id));
+                if(q.fine) require(q.estimate==reference.estimate(key(id),t+1),"five-part fine decode mismatch");
+            }
+        }
+    }
+    std::cout<<"PASS five partitions: event oracle, fifth-only collision, budget and fine equivalence\n";
+}
 void optimizedSimdTests() {
     std::mt19937 random(136);
     uint64_t compared=0;
@@ -45,7 +91,7 @@ void optimizedSimdTests() {
     }
     // Production widths exercise full vector blocks and every actual tail layout.
     for(int memory:Protocol::Memories) {
-        const auto c=Dual::forBudget(memory,12,1984,4);Dual a(c),b(c);
+        const auto c=Dual::forBudget(memory,12,1984,4,8192,Protocol::OptimizedHashes);Dual a(c),b(c);
         require(a.payloadBytes()==size_t(memory) && a.allocatedPayloadBytes()==size_t(memory),"SIMD added payload");
         for(int t=0;t<300;++t) {
             auto x=key(random()%512);a.insert(x,t);b.insert(x,t);
@@ -63,7 +109,7 @@ void optimizedSimdTests() {
 }
 int main() {
     try {
-        scalarSimdTest(); packedAndBoundaries(); updateExhaustive(); inverseExhaustive(); collisionAndRandom();optimizedSimdTests();
+        scalarSimdTest(); packedAndBoundaries(); updateExhaustive(); inverseExhaustive(); collisionAndRandom();optimizedSimdTests();fivePartitionTests();
         uint64_t forward=0,states=0,mixed=0;
         for(int w:{4,8,12,16}) for(int bits:{3,4,5}) {
             const int k=(1<<bits)-1;
@@ -81,7 +127,7 @@ int main() {
             }
         }
         for(int memory:Protocol::Memories) {
-            const auto cfg=Dual::forBudget(memory,12,1984,4);const auto p=positions(key(88),cfg.width);
+            const auto cfg=Dual::forBudget(memory,12,1984,4,8192,Protocol::OptimizedHashes);const auto p=positions(key(88),cfg.width,cfg.hashes);
             Dual s(cfg);const int k=s.maximum();
             for(int r:{0,1,2,3}) for(int age=1;age<=8192;++age) {
                 const int t=r+age;DualPointerTestAccess::time(s,t);int lo=k,hi=0;bool fine=false,slow=false,live=true;

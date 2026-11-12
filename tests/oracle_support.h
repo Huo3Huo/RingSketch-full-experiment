@@ -26,13 +26,13 @@ struct DualPointerTestAccess {
 };
 struct Counts {
     uint64_t packed=0, updates=0, inverse=0, fine=0, queries=0, oracle=0;
-    uint64_t survivors[5]={0,0,0,0,0};
+    uint64_t survivors[6]={};
 } checks;
 void require(bool ok,const std::string& message) { if(!ok) throw std::runtime_error(message); }
 TUPLES key(uint64_t n) { TUPLES x{};std::memcpy(x.data,&n,8);x.data[12]=17;return x; }
-std::array<int,4> positions(TUPLES x,int w) {
-    std::array<int,4> p;
-    for(int i=0;i<4;++i) p[i]=hash(x,100+i)%(w/4)+i*(w/4);
+Dual::Positions positions(TUPLES x,int w,int hashes=4) {
+    Dual::Positions p; p.count=hashes;
+    for(int i=0;i<hashes;++i) p[i]=hash(x,100+i)%(w/hashes)+i*(w/hashes);
     return p;
 }
 
@@ -44,7 +44,7 @@ struct Events {
     int64_t time=0;
     std::vector<int> values;
     explicit Events(Dual::Config cfg):c(cfg),k((1<<cfg.bits)-1),values(cfg.width,0) {}
-    void insert(TUPLES x) { for(int j:positions(x,c.width)) values[j]=k; }
+    void insert(TUPLES x) { for(int j:positions(x,c.width,c.hashes)) values[j]=k; }
     void advance(int packets) {
         int64_t f=time*c.fastSpeed,s=time*c.slowSpeed;
         const int64_t fe=(time+packets)*c.fastSpeed,se=(time+packets)*c.slowSpeed;
@@ -158,7 +158,7 @@ void inverseExhaustive() {
 
 void inspectQuery(const Dual& s,TUPLES x,int64_t targetWrite,const std::vector<int64_t>& writes,
                   RingSketchSimd& sameLayout) {
-    const auto p=positions(x,s.config().width);
+    const auto p=positions(x,s.config().width,s.config().hashes);
     require(p==s.getPos(x),"hash layout differs");
     const auto result=s.query(x);
     const int age=int(s.time()-targetWrite);

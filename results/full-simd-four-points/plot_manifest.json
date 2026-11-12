@@ -1,0 +1,35 @@
+{
+  "matplotlib": "3.11.1",
+  "plotter_sha256": "0afb9f5c35683bb19244a8abe5aca76fed2427e8d66643dd3ef98b9712431157",
+  "summary_sha256": {
+    "summary.csv": "41c5a8ea4f971934c8adf21cbef1de654624068e9ad9a8da4b0218507c3c52b6",
+    "throughput_summary.csv": "c9576714fa933a3dd0a26cbb2a53ef8c9f9f69808253994bd19f5cf6559eb3fb",
+    "memory.csv": "95032cf36a5ad4f139fd76cdd00fd18fee5e8e35189ca6e70f471322f3d0c08a"
+  },
+  "figures": [
+    "accuracy_all.png",
+    "accuracy_all.svg",
+    "accuracy_outside_development.png",
+    "accuracy_outside_development.svg",
+    "core_2x2.png",
+    "core_2x2.svg",
+    "overall_aae.png",
+    "overall_aae.svg",
+    "overall_are.png",
+    "overall_are.svg",
+    "query_throughput.png",
+    "query_throughput.svg",
+    "stale_257_8192_aae.png",
+    "stale_257_8192_aae.svg",
+    "stale_257_8192_are.png",
+    "stale_257_8192_are.svg",
+    "throughput.png",
+    "throughput.svg",
+    "update_throughput.png",
+    "update_throughput.svg",
+    "young_1_256_aae.png",
+    "young_1_256_aae.svg",
+    "young_1_256_are.png",
+    "young_1_256_are.svg"
+  ]
+}

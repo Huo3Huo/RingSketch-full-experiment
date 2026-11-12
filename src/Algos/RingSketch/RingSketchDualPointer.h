@@ -30,9 +30,9 @@ inline int counterFromWrite(const Sketch& s,int j,int64_t r) {
 inline Sketch::QueryResult query(const Sketch& s,TUPLES key) {
     auto out=s.query(key);
     if(out.emptyOrExpired || out.fine) return out;
-    const auto p=s.getPos(key); std::array<Sketch::WriteInterval,4> iv;
+    const auto p=s.getPos(key); std::array<Sketch::WriteInterval,5> iv;
     int64_t lo=s.time(),hi=0; int observedMin=s.maximum();
-    for(int i=0;i<4;++i) {
+    for(int i=0;i<s.config().hashes;++i) {
         observedMin=std::min(observedMin,s.counter(p[i])); iv[i]=s.intervalForBucket(p[i]);
         if(!iv[i].valid()) return out;
         lo=std::min(lo,iv[i].lo); hi=std::max(hi,iv[i].hi);
@@ -41,11 +41,11 @@ inline Sketch::QueryResult query(const Sketch& s,TUPLES key) {
     int64_t bestWrite=-1; int bestSupport=-1; int bestDistance=std::numeric_limits<int>::max();
     for(int64_t r=lo;r<=hi;++r) {
         const int age=int(s.time()-r); if(age<out.ageLower || age>out.ageUpper) continue;
-        std::array<int,4> e; int emin=s.maximum(),emax=-1;
-        for(int i=0;i<4;++i){e[i]=counterFromWrite(s,p[i],r);emin=std::min(emin,e[i]);emax=std::max(emax,e[i]);}
+        std::array<int,5> e; int emin=s.maximum(),emax=-1;
+        for(int i=0;i<s.config().hashes;++i){e[i]=counterFromWrite(s,p[i],r);emin=std::min(emin,e[i]);emax=std::max(emax,e[i]);}
         if(emax-emin>1 || observedMin<emin || observedMin>emax) continue;
         int support=0,exactMin=s.maximum(),exactMax=-1; bool hasMin=false,contradiction=false;
-        for(int i=0;i<4;++i) {
+        for(int i=0;i<s.config().hashes;++i) {
             const int actual=s.counter(p[i]);
             if(actual==e[i]) {++support;exactMin=std::min(exactMin,actual);exactMax=std::max(exactMax,actual);hasMin|=actual==emin;}
             if(actual<e[i]) {contradiction=true;break;}

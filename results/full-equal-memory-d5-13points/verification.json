@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "points": [
+    {
+      "memory": 32000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 40000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 48000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 56000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 64000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 72000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 26212,
+      "frozen_reference_available": true,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 80000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 26212,
+      "frozen_reference_available": true,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 88000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 26212,
+      "frozen_reference_available": true,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 96000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 26212,
+      "frozen_reference_available": true,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 104000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 112000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 120000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    },
+    {
+      "memory": 128000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_between_method_differences": 0,
+      "fine_same_layout_equivalence": "PASS",
+      "metrics_recomputed": 384
+    }
+  ],
+  "timing": "NOT_REQUESTED",
+  "accuracy_sample_sha256": "af6177d810b9ea6adb5758569f24e3ffb250b6b0d67a86a1f4aca4ee9ed055d7"
+}

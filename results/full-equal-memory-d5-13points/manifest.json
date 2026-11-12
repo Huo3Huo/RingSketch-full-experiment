@@ -1,0 +1,544 @@
+{
+  "status": "COMPLETE",
+  "profile": "full",
+  "config": {
+    "dataset": "data/CAIDA-130000.dat",
+    "dataset_bytes": 569555973,
+    "dataset_sha256": "d778751759e17250a866c85db9918a43ed495956996927059b4cf3812c0850f3",
+    "memory_bytes": [
+      32000,
+      40000,
+      48000,
+      56000,
+      64000,
+      72000,
+      80000,
+      88000,
+      96000,
+      104000,
+      112000,
+      120000,
+      128000
+    ],
+    "window": 8192,
+    "optimized_maintenance": "avx2_packed12",
+    "baseline_maintenance": "avx2_u16",
+    "optimized_bits": 12,
+    "threshold": 1984,
+    "slow_period": 4,
+    "seeds": [
+      131,
+      132,
+      133,
+      134
+    ],
+    "query_every": 10,
+    "development_packets": 65536,
+    "snapshot_seed": 135,
+    "hash_seeds": [
+      100,
+      101,
+      102,
+      103,
+      104
+    ],
+    "young_max_age": 256,
+    "throughput": {
+      "full": {
+        "repeats": 5,
+        "warmups": 1,
+        "snapshots": 128,
+        "keys_per_snapshot": 8192,
+        "min_batches": 16,
+        "target_seconds": 0.03
+      },
+      "smoke": {
+        "repeats": 2,
+        "warmups": 1,
+        "snapshots": 4,
+        "keys_per_snapshot": 256,
+        "min_batches": 1,
+        "target_seconds": 0.003
+      }
+    },
+    "baseline_hashes": 4,
+    "optimized_hashes": 5,
+    "baseline_bits": 16,
+    "comparison": "equal_memory",
+    "sample_packets": 1048576,
+    "baseline_hash_seeds": [
+      100,
+      101,
+      102,
+      103
+    ]
+  },
+  "packets": 27121713,
+  "paired_queries_per_point": 10848684,
+  "identity": {
+    "profile": "full",
+    "stages": "accuracy",
+    "config": {
+      "dataset": "data/CAIDA-130000.dat",
+      "dataset_bytes": 569555973,
+      "dataset_sha256": "d778751759e17250a866c85db9918a43ed495956996927059b4cf3812c0850f3",
+      "memory_bytes": [
+        32000,
+        40000,
+        48000,
+        56000,
+        64000,
+        72000,
+        80000,
+        88000,
+        96000,
+        104000,
+        112000,
+        120000,
+        128000
+      ],
+      "window": 8192,
+      "optimized_maintenance": "avx2_packed12",
+      "baseline_maintenance": "avx2_u16",
+      "optimized_bits": 12,
+      "threshold": 1984,
+      "slow_period": 4,
+      "seeds": [
+        131,
+        132,
+        133,
+        134
+      ],
+      "query_every": 10,
+      "development_packets": 65536,
+      "snapshot_seed": 135,
+      "hash_seeds": [
+        100,
+        101,
+        102,
+        103,
+        104
+      ],
+      "young_max_age": 256,
+      "throughput": {
+        "full": {
+          "repeats": 5,
+          "warmups": 1,
+          "snapshots": 128,
+          "keys_per_snapshot": 8192,
+          "min_batches": 16,
+          "target_seconds": 0.03
+        },
+        "smoke": {
+          "repeats": 2,
+          "warmups": 1,
+          "snapshots": 4,
+          "keys_per_snapshot": 256,
+          "min_batches": 1,
+          "target_seconds": 0.003
+        }
+      },
+      "baseline_hashes": 4,
+      "optimized_hashes": 5,
+      "baseline_bits": 16,
+      "comparison": "equal_memory",
+      "sample_packets": 1048576,
+      "baseline_hash_seeds": [
+        100,
+        101,
+        102,
+        103
+      ]
+    },
+    "packets": 27121713,
+    "build": {
+      "sources": {
+        "src/Common/hash.h": "1347f4ddebbbaba83de9a3c8f4f9ba99c350c055131a03f43a4a8705972bee65",
+        "src/Algos/RingSketch/RingSketchDualPointerState.h": "1c5c8b5bb2946a27d55a443ec31ea22eb93d60538202bf21314ee67226e7b495",
+        "src/Algos/RingSketch/RingSketch.h": "5d16594f35d4de621bf36c7281c1aa0b14963acc53389497b954881fff63d0c4",
+        "tests/oracle_support.h": "825fb7f1bcb12ca1d78dfe696aa3b63dfb64e10832a202702fdf073185efd12f",
+        "src/Algos/RingSketch/RingSketchSimd.h": "5b950ac4c5f3ae52a2d214d824294780e818fc9c2dd09e942c6961caf5a7b1e6",
+        "src/Algos/Abstract.h": "f48c91f880f378d43fc52fbc735cd5505e6f84138c9aa94b2b9fb842d374c312",
+        "src/Algos/RingSketch/RingSketchDualPointer.h": "7fda11e801a07c09a02b1a30f3b0e85329b1bc5ee92b2e4a1920c0596c94ee6b",
+        "src/Common/Util.h": "754c6739759f22ed2679433622a616fc41a73f56b342607640783b728b614760",
+        "src/experiment.cpp": "dcac6c989d98cc72673c8cd525af7ce72ad9e926359c4f2e519949ae5414d97f",
+        "tests/core.cpp": "3cd654860169c61bea75159a14a9e98d70298776bdc50bc6199555c742a34eab",
+        "src/benchmark.cpp": "7c19c7cd73a37e66f28056b1fe87fd5ed687b9cd3a65b58f4e5e7a4ed28d967e",
+        "src/Protocol.h": "406e44fce345e3e48db8e473f3931f02ccba0050bd795643f3e17d64a56a9381"
+      },
+      "flags": [
+        "-std=c++14",
+        "-O2",
+        "-g",
+        "-mavx2",
+        "-D_GLIBCXX_ASSERTIONS"
+      ],
+      "executables": {
+        "benchmark": "be77e86093cabb13b28c3c279da6e3a1fd46f61279881f4db9e8456d9a072f25",
+        "core": "fc39e57c3930ac1afd0f3b8cf6d7c48602966ccdd3d6c8ed2bd2d90d3776eb51",
+        "experiment": "f4c74774d486976b567ee713dc313903ef2abc34a316a9ec4c4189fc92b5500f"
+      },
+      "compiler": "clang version 22.1.8 (https://github.com/msys2/MINGW-packages 6e4e79c2f86eeb534e324e583f2057dc9fd5ecab)\r\nTarget: x86_64-w64-windows-gnu\r\nThread model: posix\r\nInstalledDir: C:/msys64/ucrt64/bin\r\n"
+    },
+    "sources": {
+      "src/Algos/Abstract.h": "f48c91f880f378d43fc52fbc735cd5505e6f84138c9aa94b2b9fb842d374c312",
+      "src/Algos/RingSketch/RingSketch.h": "5d16594f35d4de621bf36c7281c1aa0b14963acc53389497b954881fff63d0c4",
+      "src/Algos/RingSketch/RingSketchDualPointer.h": "7fda11e801a07c09a02b1a30f3b0e85329b1bc5ee92b2e4a1920c0596c94ee6b",
+      "src/Algos/RingSketch/RingSketchDualPointerState.h": "1c5c8b5bb2946a27d55a443ec31ea22eb93d60538202bf21314ee67226e7b495",
+      "src/Algos/RingSketch/RingSketchSimd.h": "5b950ac4c5f3ae52a2d214d824294780e818fc9c2dd09e942c6961caf5a7b1e6",
+      "src/benchmark.cpp": "7c19c7cd73a37e66f28056b1fe87fd5ed687b9cd3a65b58f4e5e7a4ed28d967e",
+      "src/Common/hash.h": "1347f4ddebbbaba83de9a3c8f4f9ba99c350c055131a03f43a4a8705972bee65",
+      "src/Common/Util.h": "754c6739759f22ed2679433622a616fc41a73f56b342607640783b728b614760",
+      "src/experiment.cpp": "dcac6c989d98cc72673c8cd525af7ce72ad9e926359c4f2e519949ae5414d97f",
+      "src/Protocol.h": "406e44fce345e3e48db8e473f3931f02ccba0050bd795643f3e17d64a56a9381",
+      "tests/core.cpp": "3cd654860169c61bea75159a14a9e98d70298776bdc50bc6199555c742a34eab",
+      "tests/oracle_support.h": "825fb7f1bcb12ca1d78dfe696aa3b63dfb64e10832a202702fdf073185efd12f",
+      "scripts/build.ps1": "f6cba88c9b543f602f93d741380b445557827d956cc18c7f3e0791e7bf2ff0dc",
+      "scripts/plot.py": "b088cef082347694d96ff541e72d6ea2fb798e1f43127a5c38c7484102cd6ab1",
+      "scripts/run.py": "f93397c5c9ca456a36b5aec81f86bca40f1d9b0dead8270133a5744923a0a2cb",
+      "scripts/verify.py": "d8779fb21c6dd72d114353e393fbedf96ef76eeae2056043ba08a33d885f611d",
+      "configs/experiment.json": "39abf2d5510eee24ac257819e91e23ac4d912b5d6c883d0872a9d5ab67e4fe6b"
+    },
+    "sampling": {
+      "offset_packets": 0,
+      "count": 27121713,
+      "selection": "entire input stream"
+    },
+    "references": {
+      "queries_72000.csv": "c87710cccbffb7ff18b776433caacbbad29d4929dff91b4c0542d99a0465c9e1",
+      "queries_80000.csv": "63ece20d7d199d9ed7cf9e2bfd503620b9c7e9526cbf747df22bcd84a0066242",
+      "queries_88000.csv": "a0229f448126c8861b3423b6552d3878e7866e494b2ba79c0c00932bd6ca6ffa",
+      "queries_96000.csv": "ab3a4790f5c4feff919f23b7874d02d5aab6ed141586d3a4ebe127acc7863e6f"
+    },
+    "resource_control": {
+      "selected": {
+        "group": 0,
+        "logical": 0,
+        "core": 0,
+        "efficiency_class": 1
+      },
+      "topology": [
+        {
+          "group": 0,
+          "logical": 0,
+          "core": 0,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 1,
+          "core": 0,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 2,
+          "core": 2,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 3,
+          "core": 2,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 4,
+          "core": 4,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 5,
+          "core": 4,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 6,
+          "core": 6,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 7,
+          "core": 6,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 8,
+          "core": 8,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 9,
+          "core": 8,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 10,
+          "core": 10,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 11,
+          "core": 10,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 12,
+          "core": 12,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 13,
+          "core": 12,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 14,
+          "core": 14,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 15,
+          "core": 14,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 16,
+          "core": 16,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 17,
+          "core": 17,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 18,
+          "core": 18,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 19,
+          "core": 19,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 20,
+          "core": 20,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 21,
+          "core": 21,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 22,
+          "core": 22,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 23,
+          "core": 23,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 24,
+          "core": 24,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 25,
+          "core": 25,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 26,
+          "core": 26,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 27,
+          "core": 27,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 28,
+          "core": 28,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 29,
+          "core": 29,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 30,
+          "core": 30,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 31,
+          "core": 31,
+          "efficiency_class": 0
+        }
+      ],
+      "execution_threads": 1,
+      "frequency": "OS-controlled",
+      "priority": "unchanged"
+    },
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+    "runtime_dir": "C:/msys64/ucrt64/bin"
+  },
+  "started": "2026-11-12T20:27:51.652816+08:00",
+  "completed_stages": {
+    "accuracy/32000": {
+      "elapsed_seconds": 304.41193130000465,
+      "outputs": {
+        "layout_32000.json": "990205aeca38f8204554023f2cda41dfd1ea3cd60ba713af6c5ce83bf82932bd",
+        "metrics_32000.csv": "a0b67790f5d55a1af6838ce5b75853158218450b0201c3f2becc7127d43d8a59",
+        "queries_32000.csv": "98987b6b7ba9cd8420826559abeb1f291710efa1963527214947c5b7ffb5275e",
+        "final_checksums.json": "aa5aec25d26a3df794b828bb8c478b8ca86cc5077040fa54e565ec3f2bf07320"
+      }
+    },
+    "accuracy/40000": {
+      "elapsed_seconds": 368.1572191000014,
+      "outputs": {
+        "layout_40000.json": "efd3537153526d3221810acffa59eb10d387ece86ec6f02d6443935cccb408c9",
+        "metrics_40000.csv": "5686094dfc78bbe82f87a6bbdd3cf1da45c6465a02b4189f8276f81b735924b4",
+        "queries_40000.csv": "25c58ab2a74517134ac95efbf5b35f208525d327d5198396088afa9ddfc7eab7",
+        "final_checksums.json": "ba47d20da54df9e0c88e5eb94d9df0873753b065647b988a8005543729821bb8"
+      }
+    },
+    "accuracy/48000": {
+      "elapsed_seconds": 426.5420412999956,
+      "outputs": {
+        "layout_48000.json": "bf68f1abb7e4d5e88fa680bdfb4d06a87f67e80fc6429b0ae9320d42791f1926",
+        "metrics_48000.csv": "8dc5250c8a2d41a26b6afd6110dcc9cd41a28fdb1abb7066227dbedb02f88b87",
+        "queries_48000.csv": "a16a93ede36f8080267078b3989bdc0d586289ddd289136e9d29a2edb8466423",
+        "final_checksums.json": "d98fb856fb5159270806fe3e020742892e17192ca662cf30a8a749997f395c41"
+      }
+    },
+    "accuracy/56000": {
+      "elapsed_seconds": 487.2368637000036,
+      "outputs": {
+        "layout_56000.json": "25a40fe14efa7d7d09aa956d232979e31c9e7fca142f667e1229a93c51adef98",
+        "metrics_56000.csv": "2a41768f5bbdf6906434f9ce557400bd9bd42f0557ff64710485cf2e05c7e12f",
+        "queries_56000.csv": "cb96b7b5fe9038170c460a7ae2d84eeca75259334d80fe789821160821e20849",
+        "final_checksums.json": "bf1dafbd9637fc143eae1137d09428f9a0804778bc6f579f7cb64dcf049ce7a6"
+      }
+    },
+    "accuracy/64000": {
+      "elapsed_seconds": 529.7194277999952,
+      "outputs": {
+        "layout_64000.json": "0bf5aca773a45b127c90199390d80b86934914a5d99ec69d6acce3197ce51f3f",
+        "metrics_64000.csv": "06f15c1c9f0054510e1e1a557f846933a548f23cceebaef774f266a8d2998805",
+        "queries_64000.csv": "16279bbb4a192d15759ab96a6a81c9e931fd64c919f0069bb73da50597b54749",
+        "final_checksums.json": "8b23d934fb7e06660fd369b13ad8473639673d2a31bac06f12f3a3d39d495d78"
+      }
+    },
+    "accuracy/72000": {
+      "elapsed_seconds": 596.6576529999948,
+      "outputs": {
+        "layout_72000.json": "cd77826dbdb6d273344c7f1e4cdae5ff8d58a7d18438c066423276abc2685f1c",
+        "metrics_72000.csv": "1380d65c861e64338fbcde9294cfc0a564860bda72132edbf045a2fa9980ab1e",
+        "queries_72000.csv": "066802a6e342bf49b2b4389a8b678b4e105414c2af12429aa0a373f28761a064",
+        "final_checksums.json": "6d10b96c69810bad32714849845a23e634fb28220e768a5be3e2ba58b22564e2"
+      }
+    },
+    "accuracy/80000": {
+      "elapsed_seconds": 666.6723114999986,
+      "outputs": {
+        "layout_80000.json": "33b8924b696e4bc96c8b13d4e0f02637e184a5a6bf1a0c94df07c9e081d7331d",
+        "metrics_80000.csv": "08747763479ee3d27267bf3ea2ab723a84d687b3723357f804fa0326176a8b0d",
+        "queries_80000.csv": "9bf851c8c14352af7dd4ff3d87b47fa642c1b63433906cb0662c90ee0ef0ca5d",
+        "final_checksums.json": "37bfcef9b52af04613a547ff03c6ace34d868d02327a1d13953b89876c8ffc57"
+      }
+    },
+    "accuracy/88000": {
+      "elapsed_seconds": 730.598204599999,
+      "outputs": {
+        "layout_88000.json": "9741e669d4d8db237b781d9ecaea35b866517148e86d334d89788261047438f7",
+        "metrics_88000.csv": "92eec2c1421de347acbd2a8029c4287e54a23ea7d0d6975a02d20c5e4e2f849a",
+        "queries_88000.csv": "3b83ebb2648c537b63195affb3b523363017f7023b39ef4e42f572af3db9fc12",
+        "final_checksums.json": "3147013a6f7fd646449274fd8fee44e14afb890ff5dd63cfed5167af76d81cac"
+      }
+    },
+    "accuracy/96000": {
+      "elapsed_seconds": 776.0660478999998,
+      "outputs": {
+        "layout_96000.json": "a4b7eb5439712f20017a9dafeee7b419606d2f4224d1fa58cc4a01a4e7392d24",
+        "metrics_96000.csv": "0e767cc99015dbb5608424def0ed0ff0a0c46e6a947ee2e37a01d7527f7f2d16",
+        "queries_96000.csv": "e29be0a474c6c3d4a2c5f798d02a9377f890605e3372b7e20eec41aa91f18519",
+        "final_checksums.json": "ce77697985d521e8c6ddc3b4a4985a2eccebc7def251c97d500b91312c795297"
+      }
+    },
+    "accuracy/104000": {
+      "elapsed_seconds": 848.5648285000061,
+      "outputs": {
+        "layout_104000.json": "8debd488c353f9e13cdbb2978ff5f2a48fe24bc508be82fe82b01132c21ea9e3",
+        "metrics_104000.csv": "576d667ae195f2e91da6c41bf505dc4f07ec2fbc5b8a4deb835058d617c09e9f",
+        "queries_104000.csv": "21efab119031002121ae0a8a0a0550b80da12e8655f58a096ca78f4bc6819960",
+        "final_checksums.json": "969f5500a220555e64e56884b5952df40c7e3f557595b221ffc0c726e92d46bd"
+      }
+    },
+    "accuracy/112000": {
+      "elapsed_seconds": 901.5276171000005,
+      "outputs": {
+        "layout_112000.json": "b3af1bedfcdf2cd9c25bc8cbddd4983a21f5cfc58abdc862a3a10db814abf3e4",
+        "metrics_112000.csv": "b5c71b2892007299dbe2e559d44f770d70eee78fc0a6887f94104d8bb790ef09",
+        "queries_112000.csv": "87aae712b29441f86d8cab465ac6792c0eb2797aeac59b38f39d2a96b4d2749f",
+        "final_checksums.json": "7f5219f9a4b739972457c9a4fb8cfd70a6c7c9408bddc2e4c645843d5e94cfb6"
+      }
+    },
+    "accuracy/120000": {
+      "elapsed_seconds": 968.5281532000008,
+      "outputs": {
+        "layout_120000.json": "c14800b02c4405dae259e245cb1f118d70ba2c1ce0557fb306aae3c786da2941",
+        "metrics_120000.csv": "8bd90273389261e50b0e8ecec17595aa6640e4bf95c6a6a7849813091989d4f0",
+        "queries_120000.csv": "3b6616e807a87454fded6e44041689bdc1000fa8b9c5e51fee081b522662610d",
+        "final_checksums.json": "27eaa760a317051030399f898fc4540ccf58476eb331df19cad1cb0a8de16e90"
+      }
+    },
+    "accuracy/128000": {
+      "elapsed_seconds": 1027.5675682,
+      "outputs": {
+        "layout_128000.json": "ffa9dc8f853b3106f901a6c4f4ae53e1df374cd7e09587880a03e0e047222759",
+        "metrics_128000.csv": "72842fcb43b3bb4c4fa8ee232f32b17d16c6091cceb3eb686bbb72085ada7b6c",
+        "queries_128000.csv": "4bfe927766e74ae3efd673603f5a70f1fbb182e5d2b35c385ab6c44a3e5abe56",
+        "final_checksums.json": "fff81e74ada343b43909e2eaf6b9387f8709c3b6fac112299048247f9e033a47"
+      }
+    }
+  },
+  "finished": "2026-11-12T23:19:34.707258+08:00"
+}

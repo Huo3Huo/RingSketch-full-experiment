@@ -1,0 +1,5 @@
+optimized_payload_bytes,baseline_payload_bytes,buckets,optimized_object_bytes,baseline_object_bytes,optimized_known_persistent_bytes,baseline_known_persistent_bytes
+32000,42664,21332,104,72,32104,42736
+64000,85328,42664,104,72,64104,85400
+96000,128000,64000,104,72,96104,128072
+128000,170664,85332,104,72,128104,170736

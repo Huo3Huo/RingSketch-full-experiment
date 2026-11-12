@@ -33,11 +33,11 @@ std::ofstream output(const std::string& path) {
 }
 std::unique_ptr<Abstract> instance(int memory, const std::string& method) {
     const auto c = RingSketchDualPointer::forBudget(memory, Protocol::OptimizedBits,
-        Protocol::Threshold, Protocol::SlowPeriod, Protocol::Window);
+        Protocol::Threshold, Protocol::SlowPeriod, Protocol::Window, Protocol::OptimizedHashes);
     if (method == "optimized") return std::unique_ptr<Abstract>(new TrajectorySketch(c));
     require(method == "baseline", "unknown method");
-    return std::unique_ptr<Abstract>(new RingSketchSimd(Protocol::Window, 2*c.width,
-        Protocol::Hashes, Protocol::BaselineBits));
+    return std::unique_ptr<Abstract>(new RingSketchSimd(Protocol::Window, memory,
+        Protocol::BaselineHashes, Protocol::BaselineBits));
 }
 std::vector<TUPLES> readData(const std::string& path, int requested) {
     std::ifstream in(path, std::ios::binary | std::ios::ate);
@@ -121,8 +121,8 @@ int main(int argc, char** argv) {
         std::map<std::string, std::string> args;
         for (int i = 1; i < argc; i += 2) require(args.emplace(argv[i], argv[i+1]).second, "duplicate option");
         const auto name = args.at("--profile");
-        require(name == "smoke" || name == "full", "unknown profile");
-        const auto p = name == "full" ? Protocol::Full : Protocol::Smoke;
+        require(name == "smoke" || name == "full" || name == "sample", "unknown profile");
+        const auto p = name == "smoke" ? Protocol::Smoke : Protocol::Full;
         const auto data = readData(args.at("--data"), std::stoi(args.at("--count")));
         const int memory = std::stoi(args.at("--memory"));
         require(std::find(Protocol::Memories.begin(), Protocol::Memories.end(), memory) != Protocol::Memories.end(), "unknown memory point");

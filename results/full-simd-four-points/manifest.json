@@ -1,0 +1,500 @@
+{
+  "status": "COMPLETE",
+  "profile": "full",
+  "config": {
+    "dataset": "data/CAIDA-130000.dat",
+    "dataset_bytes": 569555973,
+    "dataset_sha256": "d778751759e17250a866c85db9918a43ed495956996927059b4cf3812c0850f3",
+    "memory_bytes": [
+      32000,
+      64000,
+      96000,
+      128000
+    ],
+    "window": 8192,
+    "optimized_maintenance": "avx2_packed12",
+    "baseline_maintenance": "avx2_u16",
+    "hashes": 4,
+    "optimized_bits": 12,
+    "threshold": 1984,
+    "slow_period": 4,
+    "seeds": [
+      131,
+      132,
+      133,
+      134
+    ],
+    "query_every": 10,
+    "development_packets": 65536,
+    "snapshot_seed": 135,
+    "hash_seeds": [
+      100,
+      101,
+      102,
+      103
+    ],
+    "young_max_age": 256,
+    "throughput": {
+      "full": {
+        "repeats": 5,
+        "warmups": 1,
+        "snapshots": 128,
+        "keys_per_snapshot": 8192,
+        "min_batches": 16,
+        "target_seconds": 0.03
+      },
+      "smoke": {
+        "repeats": 2,
+        "warmups": 1,
+        "snapshots": 4,
+        "keys_per_snapshot": 256,
+        "min_batches": 1,
+        "target_seconds": 0.003
+      }
+    }
+  },
+  "packets": 27121713,
+  "paired_queries_per_point": 10848684,
+  "identity": {
+    "profile": "full",
+    "stages": "all",
+    "config": {
+      "dataset": "data/CAIDA-130000.dat",
+      "dataset_bytes": 569555973,
+      "dataset_sha256": "d778751759e17250a866c85db9918a43ed495956996927059b4cf3812c0850f3",
+      "memory_bytes": [
+        32000,
+        64000,
+        96000,
+        128000
+      ],
+      "window": 8192,
+      "optimized_maintenance": "avx2_packed12",
+      "baseline_maintenance": "avx2_u16",
+      "hashes": 4,
+      "optimized_bits": 12,
+      "threshold": 1984,
+      "slow_period": 4,
+      "seeds": [
+        131,
+        132,
+        133,
+        134
+      ],
+      "query_every": 10,
+      "development_packets": 65536,
+      "snapshot_seed": 135,
+      "hash_seeds": [
+        100,
+        101,
+        102,
+        103
+      ],
+      "young_max_age": 256,
+      "throughput": {
+        "full": {
+          "repeats": 5,
+          "warmups": 1,
+          "snapshots": 128,
+          "keys_per_snapshot": 8192,
+          "min_batches": 16,
+          "target_seconds": 0.03
+        },
+        "smoke": {
+          "repeats": 2,
+          "warmups": 1,
+          "snapshots": 4,
+          "keys_per_snapshot": 256,
+          "min_batches": 1,
+          "target_seconds": 0.003
+        }
+      }
+    },
+    "packets": 27121713,
+    "build": {
+      "flags": [
+        "-std=c++14",
+        "-O2",
+        "-g",
+        "-mavx2",
+        "-D_GLIBCXX_ASSERTIONS"
+      ],
+      "sources": {
+        "src/Common/Util.h": "754c6739759f22ed2679433622a616fc41a73f56b342607640783b728b614760",
+        "tests/core.cpp": "dd80754651f83b877cf8d234c9d5510d31b019d4472a6dad280900d02f5697dc",
+        "src/Common/hash.h": "1347f4ddebbbaba83de9a3c8f4f9ba99c350c055131a03f43a4a8705972bee65",
+        "src/Algos/RingSketch/RingSketchDualPointerState.h": "deb3a1cc37b31acdf316e262ac59b3fe9a2257f6ec4c06eed806b423e5ca6a62",
+        "src/Algos/RingSketch/RingSketch.h": "5d16594f35d4de621bf36c7281c1aa0b14963acc53389497b954881fff63d0c4",
+        "src/Protocol.h": "be4949368cba6da33967de7a5b2ac8db70f82aacd84e795bb34ed44bc1c717c2",
+        "src/Algos/Abstract.h": "f48c91f880f378d43fc52fbc735cd5505e6f84138c9aa94b2b9fb842d374c312",
+        "src/benchmark.cpp": "30f2386d0ad822699f19be4b752135e70d59b3326e7baddecdc61a56cd0ccd46",
+        "src/Algos/RingSketch/RingSketchDualPointer.h": "08f8aa4c1f3a5f8519652195664335c6c4c572053d13779c33fb9c0435d0df1f",
+        "tests/oracle_support.h": "b9ecf50bfe291f523d625b620fe7db5e46bfbd724cc2cd92b3345cba70f24f70",
+        "src/experiment.cpp": "39b5d8de9a4a107b2c0df7a64743d7e175cefc9c4edb2aaa0caaabfe4e55ea42",
+        "src/Algos/RingSketch/RingSketchSimd.h": "5b950ac4c5f3ae52a2d214d824294780e818fc9c2dd09e942c6961caf5a7b1e6"
+      },
+      "executables": {
+        "benchmark": "d117c27c06cba53bf96c02e6aba55dcd51e43fa71164ca5503e49c12dc8b84c5",
+        "experiment": "638977b71e79b9a9998a11d9946e83bd8c09b210f6d73aab4ffc3dbf065c1698",
+        "core": "2d6709dcb8b687a1448ca7f920fcdb98143acc3fc615a36314b56df9aba8af34"
+      },
+      "compiler": "clang version 22.1.8 (https://github.com/msys2/MINGW-packages 6e4e79c2f86eeb534e324e583f2057dc9fd5ecab)\r\nTarget: x86_64-w64-windows-gnu\r\nThread model: posix\r\nInstalledDir: C:/msys64/ucrt64/bin\r\n"
+    },
+    "sources": {
+      "src/Algos/Abstract.h": "f48c91f880f378d43fc52fbc735cd5505e6f84138c9aa94b2b9fb842d374c312",
+      "src/Algos/RingSketch/RingSketch.h": "5d16594f35d4de621bf36c7281c1aa0b14963acc53389497b954881fff63d0c4",
+      "src/Algos/RingSketch/RingSketchDualPointer.h": "08f8aa4c1f3a5f8519652195664335c6c4c572053d13779c33fb9c0435d0df1f",
+      "src/Algos/RingSketch/RingSketchDualPointerState.h": "deb3a1cc37b31acdf316e262ac59b3fe9a2257f6ec4c06eed806b423e5ca6a62",
+      "src/Algos/RingSketch/RingSketchSimd.h": "5b950ac4c5f3ae52a2d214d824294780e818fc9c2dd09e942c6961caf5a7b1e6",
+      "src/benchmark.cpp": "30f2386d0ad822699f19be4b752135e70d59b3326e7baddecdc61a56cd0ccd46",
+      "src/Common/hash.h": "1347f4ddebbbaba83de9a3c8f4f9ba99c350c055131a03f43a4a8705972bee65",
+      "src/Common/Util.h": "754c6739759f22ed2679433622a616fc41a73f56b342607640783b728b614760",
+      "src/experiment.cpp": "39b5d8de9a4a107b2c0df7a64743d7e175cefc9c4edb2aaa0caaabfe4e55ea42",
+      "src/Protocol.h": "be4949368cba6da33967de7a5b2ac8db70f82aacd84e795bb34ed44bc1c717c2",
+      "tests/core.cpp": "dd80754651f83b877cf8d234c9d5510d31b019d4472a6dad280900d02f5697dc",
+      "tests/oracle_support.h": "b9ecf50bfe291f523d625b620fe7db5e46bfbd724cc2cd92b3345cba70f24f70",
+      "scripts/build.ps1": "f6cba88c9b543f602f93d741380b445557827d956cc18c7f3e0791e7bf2ff0dc",
+      "scripts/plot.py": "0afb9f5c35683bb19244a8abe5aca76fed2427e8d66643dd3ef98b9712431157",
+      "scripts/run.py": "c443ef9e531dbf6cd780aabeb57bab6d4cb41e5ccc626f54cd2353bee3145d93",
+      "scripts/verify.py": "d07405e95ba4233aeb25aecd31bb3d85629c807fbb4cec51b4c9840db4bae7e7",
+      "configs/experiment.json": "189fc52b11e18cf1b9d9249ec114d0581eb27fbe6b8b523fdd4e72237e807d9e"
+    },
+    "references": {
+      "queries_128000.csv": "c595953aa45a58ea341af59136738ddee1c4b8071d2dd74ec35ac45357a333d7",
+      "queries_32000.csv": "125d4ff49dee4bf982e66b60317280c55e79e0b7cd505ef7d47e99488c582609",
+      "queries_80000.csv": "a302c675b2d8c749fda7035258881126618a3ab2c961dd2fbf687f0c5c8c9d82"
+    },
+    "resource_control": {
+      "selected": {
+        "group": 0,
+        "logical": 0,
+        "core": 0,
+        "efficiency_class": 1
+      },
+      "topology": [
+        {
+          "group": 0,
+          "logical": 0,
+          "core": 0,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 1,
+          "core": 0,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 2,
+          "core": 2,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 3,
+          "core": 2,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 4,
+          "core": 4,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 5,
+          "core": 4,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 6,
+          "core": 6,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 7,
+          "core": 6,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 8,
+          "core": 8,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 9,
+          "core": 8,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 10,
+          "core": 10,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 11,
+          "core": 10,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 12,
+          "core": 12,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 13,
+          "core": 12,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 14,
+          "core": 14,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 15,
+          "core": 14,
+          "efficiency_class": 1
+        },
+        {
+          "group": 0,
+          "logical": 16,
+          "core": 16,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 17,
+          "core": 17,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 18,
+          "core": 18,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 19,
+          "core": 19,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 20,
+          "core": 20,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 21,
+          "core": 21,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 22,
+          "core": 22,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 23,
+          "core": 23,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 24,
+          "core": 24,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 25,
+          "core": 25,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 26,
+          "core": 26,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 27,
+          "core": 27,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 28,
+          "core": 28,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 29,
+          "core": 29,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 30,
+          "core": 30,
+          "efficiency_class": 0
+        },
+        {
+          "group": 0,
+          "logical": 31,
+          "core": 31,
+          "efficiency_class": 0
+        }
+      ],
+      "execution_threads": 1,
+      "frequency": "OS-controlled",
+      "priority": "unchanged"
+    },
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+    "runtime_dir": "C:/msys64/ucrt64/bin"
+  },
+  "started": "2026-11-12T06:53:43.402316+08:00",
+  "completed_stages": {
+    "accuracy/32000": {
+      "elapsed_seconds": 259.7903833000455,
+      "outputs": {
+        "layout_32000.json": "a0afc251d34ac848d6cad697ccbd4f27c96b5627af4a1f5ac55760f3a213716f",
+        "metrics_32000.csv": "e231c28ba028fc005373af9c8f9731dc82e3a27de6e95b324aa6efc080ab1988",
+        "queries_32000.csv": "9920a9841159c8ea4dfa9ada38a162580f2a259927eb281fc82dd4d418f2b79f",
+        "final_checksums.json": "0b95b65e6897b8c722ff5c756e8a9d1fcdd8b74f6d03549fd95f7375ea0800f9"
+      }
+    },
+    "accuracy/64000": {
+      "elapsed_seconds": 472.8026351999724,
+      "outputs": {
+        "layout_64000.json": "041898ee19a9c0d920f3aafea4844222d1622a70c763e1575621df7a3f58bde9",
+        "metrics_64000.csv": "62bf9bc87f31aa54162c622913454d7544288464dad49c277b9214a0b9d2bb1d",
+        "queries_64000.csv": "fd6d1ec7b5f45b6d7d699758060b7d85811dcf8cd138394b1a341ddf1b830ec2",
+        "final_checksums.json": "5ab4d3fa086938c647f6bacecd8c1e06fa172db19b76260fda4473591a2f6595"
+      }
+    },
+    "accuracy/96000": {
+      "elapsed_seconds": 691.5447387000313,
+      "outputs": {
+        "layout_96000.json": "0e46563b108b997b781e54fa43a8cef1c25459f2aae9397be3e29c7ebebac53e",
+        "metrics_96000.csv": "943ffeb80540bcf9b8ad3e293bc92872320071ace1d0f8f7d597bf863fb5f064",
+        "queries_96000.csv": "2cd58a953e228341d82ff81d5acfb3c5675b8f126c928892f98b744465363c73",
+        "final_checksums.json": "0969daa4ece7e616d036117125d9700eaed648166152bd92f5af7e44122790ac"
+      }
+    },
+    "accuracy/128000": {
+      "elapsed_seconds": 2409.72817940003,
+      "outputs": {
+        "layout_128000.json": "40b21de371f290e4a412690e053877cb6a8be4195c8054a054cfe3ddbc8b7bb4",
+        "metrics_128000.csv": "ced6905893b591f0b5fe8ac0605192799da601fb03ab8d791597a8e41e774606",
+        "queries_128000.csv": "6850ef9892682e9379ce0c10c40be0e70fb28992c488d47f22f6787640111cb8",
+        "final_checksums.json": "b1c5d0b9f0db64fa4c777b39b5f0faf1b600524d30df1ae806abf6e16b590337"
+      }
+    },
+    "calibrate/32000": {
+      "elapsed_seconds": 4.471253100025933,
+      "outputs": {
+        "calibration.csv": "18bc0eb5fc26e48551db53bd1c950dfbcf798dc812e4c863b144b2f2b2f65338",
+        "batches.txt": "22154f0969aed4ed804cd7dad5c7c1764e9641ce698b82d572cb058546a9c2b5"
+      }
+    },
+    "calibrate/64000": {
+      "elapsed_seconds": 6.438816499954555,
+      "outputs": {
+        "calibration.csv": "06ad70d2f1eb564e5a256c1ea0d9cedc12296646b54537bbc1dd24bcee8745bb",
+        "batches.txt": "b7a33ec2d3fa6748259d5a72ed976b7308fa7355fd99818bc0dc12fece595277"
+      }
+    },
+    "calibrate/96000": {
+      "elapsed_seconds": 10.379866900038905,
+      "outputs": {
+        "calibration.csv": "80d5a302f0f0671448bfd08955c7c04bf4a04bf7154f41435982428f3793f393",
+        "batches.txt": "22154f0969aed4ed804cd7dad5c7c1764e9641ce698b82d572cb058546a9c2b5"
+      }
+    },
+    "calibrate/128000": {
+      "elapsed_seconds": 13.469353100052103,
+      "outputs": {
+        "calibration.csv": "401329d563442fbe6c3e4a5167f326e95f355688266fc4518274100a0e1c7c5d",
+        "batches.txt": "b7a33ec2d3fa6748259d5a72ed976b7308fa7355fd99818bc0dc12fece595277"
+      }
+    },
+    "update/32000": {
+      "elapsed_seconds": 2155.703456700023,
+      "outputs": {
+        "update_raw.csv": "ddf417803da36f538be9dfc3a9e9b344283ba5cdd2f67fc77d1fc700a850077a"
+      }
+    },
+    "query/32000": {
+      "elapsed_seconds": 1451.2732127,
+      "outputs": {
+        "query_raw.csv": "4b2d9ee569fa758558cecd5caed737ddad925d67587a82b35f2296c7fc0d7ddf",
+        "query_snapshots.csv": "ad0c507215a46a11a4a63bc2c160b478a785e01034377984cb3a06a3372e73c9"
+      }
+    },
+    "update/64000": {
+      "elapsed_seconds": 3515.4977751999995,
+      "outputs": {
+        "update_raw.csv": "bf77d78f6ae881256571100cbe121a3cc0e328b925ccc4ee232fd477f0b9e5a8"
+      }
+    },
+    "query/64000": {
+      "elapsed_seconds": 2710.1333569000017,
+      "outputs": {
+        "query_raw.csv": "0c47783f36820b56b8287120f5c6ff4d2e1c76a2241392acc301dda08822a4e2",
+        "query_snapshots.csv": "51a4d848b64433ba7a8d14a375883112fbebb3349068e922fa6d6f28f5b87dbb"
+      }
+    },
+    "update/96000": {
+      "elapsed_seconds": 3829.6533107000014,
+      "outputs": {
+        "update_raw.csv": "6813e6ca385683bd38a8b95e921a946a6e91ee9ea014c3c7aba7a0103a428b0f"
+      }
+    },
+    "query/96000": {
+      "elapsed_seconds": 3901.1320941000013,
+      "outputs": {
+        "query_raw.csv": "0860095c63e1d1fc5e4954ba22577dea35a448575c030f44e46c3c7e894cf019",
+        "query_snapshots.csv": "49a924f7b35e41cc9d147775a4fbeec51a2b7d54a6adb7274cfac08c623c698a"
+      }
+    },
+    "update/128000": {
+      "elapsed_seconds": 4878.843812300001,
+      "outputs": {
+        "update_raw.csv": "7eca076c5bfd2feacfb4c616b2e89d59eadaf76657b207856338993506a4bb2e"
+      }
+    },
+    "query/128000": {
+      "elapsed_seconds": 5164.3444127,
+      "outputs": {
+        "query_raw.csv": "2b771e7907ba6b18dd62fb62540d9c7c0fd5e908020f72ced8606a8cf0f8c65a",
+        "query_snapshots.csv": "97cc8e656f39b490388a70ec7f7430ce3bd23753f96270079e62de126c0e1708"
+      }
+    }
+  },
+  "query_batches": 32,
+  "pause_reason": "User requested pause. Runner and active query worker stopped; completed stages retained. Resume restarts the incomplete query stage to exclude pause time from throughput.",
+  "paused_stage": "query/32000",
+  "finished": "2026-11-12T17:54:09.630268+08:00"
+}

@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "points": [
+    {
+      "memory": 32000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 26212,
+      "frozen_reference_available": true,
+      "young_mismatches": 0,
+      "metrics_recomputed": 360
+    },
+    {
+      "memory": 64000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_mismatches": 0,
+      "metrics_recomputed": 360
+    },
+    {
+      "memory": 96000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 0,
+      "frozen_reference_available": false,
+      "young_mismatches": 0,
+      "metrics_recomputed": 360
+    },
+    {
+      "memory": 128000,
+      "rows": 10848684,
+      "frozen_prefix_rows_matched": 26212,
+      "frozen_reference_available": true,
+      "young_mismatches": 0,
+      "metrics_recomputed": 360
+    }
+  ],
+  "timing": {
+    "status": "PASS",
+    "summary_rows": 16,
+    "measured_rounds": 80,
+    "warmup_rounds": 16,
+    "snapshot_min_seconds": 0.0341865,
+    "snapshot_median_seconds": 0.11985939999999999,
+    "query_batches": 32,
+    "snapshot_seed": 135
+  },
+  "accuracy_sample_sha256": "af6177d810b9ea6adb5758569f24e3ffb250b6b0d67a86a1f4aca4ee9ed055d7"
+}

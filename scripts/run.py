@@ -78,8 +78,8 @@ def pin_cpu():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--profile", choices=["smoke", "full"], default="smoke")
-    parser.add_argument("--stages", choices=["all", "accuracy"], default="all")
+    parser.add_argument("--profile", choices=["smoke", "sample", "full"], default="full")
+    parser.add_argument("--stages", choices=["all", "accuracy"], default="accuracy")
     parser.add_argument("--out", type=Path, help="New result directory, or existing directory with --resume")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--runtime-dir", default="C:/msys64/ucrt64/bin")
@@ -99,14 +99,14 @@ def main():
         protocol = json.loads(subprocess.check_output([executables[name], "--describe"], env=env, text=True))
         if protocol != {key: config[key] for key in protocol}:
             raise ValueError(f"Config/{name} protocol mismatch")
-    if args.stages == "all":
-        import matplotlib  # Fail before measurements if plotting dependency is absent.
+    import matplotlib  # Accuracy-only runs also produce plots; fail before measurements.
     data = ROOT / config["dataset"]
     if data.stat().st_size != config["dataset_bytes"] or digest(data) != config["dataset_sha256"]:
         raise ValueError("Dataset identity mismatch")
     if data.stat().st_size % 21:
         raise ValueError("Partial input record")
-    count = config["development_packets"] if args.profile == "smoke" else 0
+    count = (config["development_packets"] if args.profile == "smoke" else
+             config["sample_packets"] if args.profile == "sample" else 0)
     n = count or data.stat().st_size // 21
     stamp = dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).strftime("%Y%m%d-%H%M%S")
     out = (args.out or ROOT / "results" / f"{args.profile}-{stamp}").resolve()
@@ -114,7 +114,8 @@ def main():
     resources, restore_affinity = pin_cpu()
     identity = dict(profile=args.profile, stages=args.stages, config=config, packets=n,
                     build=build, sources=source_hashes(["src", "tests", "scripts", "configs"]),
-                    references={p.name: digest(p) for p in sorted((ROOT / "reference").glob("*.csv"))},
+                    sampling=dict(offset_packets=0, count=n, selection=("entire input stream" if args.profile == "full" else "fixed prefix; no result-dependent selection")),
+                    references={p.name: digest(p) for p in sorted((ROOT / "reference/equal-memory-d5").glob("*.csv"))},
                     resource_control=resources, platform=platform.platform(), processor=platform.processor(),
                     python=sys.version, runtime_dir=args.runtime_dir)
     mf = out / "manifest.json"
@@ -184,8 +185,7 @@ def main():
             raise ValueError("Source/config changed during run; results cannot be finalized")
         manifest["status"] = "MEASUREMENTS_COMPLETE"; save()
         subprocess.run([sys.executable, str(ROOT / "scripts/verify.py"), str(out)], check=True, env=env)
-        if args.stages == "all":
-            subprocess.run([sys.executable, str(ROOT / "scripts/plot.py"), str(out)], check=True, env=env)
+        subprocess.run([sys.executable, str(ROOT / "scripts/plot.py"), str(out)], check=True, env=env)
         manifest["status"] = "COMPLETE"
     except BaseException as error:
         manifest["status"] = "FAILED"; manifest["error"] = repr(error)
